@@ -17,20 +17,33 @@
             width: 100%;
             height: 100%;
         }
+        /* 사용자 정의 컨트롤 스타일 */
+        #controls {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+        }
     </style>
 </head>
 <body>
-    <h1>영상교육 자료</h1>
-    <video id="myVideo" controls autoplay muted>
+    <video id="myVideo" autoplay muted>
         <source src="TAEIN.mp4" type="video/mp4">
         브라우저가 비디오 태그를 지원하지 않습니다.
     </video>
+    <div id="controls">
+        <button id="playPause">Play/Pause</button>
+    </div>
 
     <script>
         var video = document.getElementById("myVideo");
+        var playPauseButton = document.getElementById("playPause");
         var startTime = 0;
 
-        // 비디오 재생 시작 시 시작 시간을 기록
+        // 비디오 재생 시작 시 시작 시간 기록
         video.addEventListener('play', function() {
             startTime = video.currentTime;
             video.controls = false; // 기본 컨트롤 숨기기
@@ -38,16 +51,26 @@
 
         // 동영상 시간 이동 감지 및 제한
         video.addEventListener('timeupdate', function() {
-            // 현재 시간이 시작 시간보다 작은 경우 원래 위치로 되돌리기
             if (video.currentTime < startTime) {
                 video.currentTime = startTime;
             }
         });
 
-        // 동영상 종료 후 리디렉션
+        // 비디오 종료 후 리디렉션
         video.addEventListener('ended', function() {
             var redirectUrl = 'https://naver.me/5tJgylxH';
             window.location.href = redirectUrl;
+        });
+
+        // 사용자 정의 컨트롤 - Play/Pause 버튼
+        playPauseButton.addEventListener('click', function() {
+            if (video.paused) {
+                video.play();
+                playPauseButton.textContent = 'Pause';
+            } else {
+                video.pause();
+                playPauseButton.textContent = 'Play';
+            }
         });
 
         // 창 닫기 시도 시 경고 메시지 방지
