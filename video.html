@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TAEIN 안전보건 교육</title>
+    <style>
+        /* 전체 화면으로 강제 */
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        video {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+    <h1>영상교육 자료</h1>
+    <video id="myVideo" controls autoplay muted>
+        <source src="TAEIN.mp4" type="video/mp4">
+        브라우저가 비디오 태그를 지원하지 않습니다.
+    </video>
+
+    <script>
+        // 비디오 요소 선택
+        var video = document.getElementById("myVideo");
+
+        // 동영상 정지 비활성화
+        video.addEventListener('play', function() {
+            video.controls = false;
+        });
+
+        // 동영상이 끝나면 컨트롤 활성화
+        video.addEventListener('ended', function() {
+            video.controls = true;
+        });
+
+        // 동영상이 끝나면 브라우저 닫기 방지 해제 및 페이지 닫기
+        video.addEventListener('ended', function() {
+            window.onbeforeunload = null;
+            window.close();
+        });
+
+        // 창 닫기 시도 시 경고 메시지 방지
+        window.addEventListener('unload', function(event) {
+            event.preventDefault();
+            event.returnValue = '';
+        });
+    </script>
+</body>
+</html>
