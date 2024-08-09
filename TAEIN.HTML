@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TAEIN 안전보건 교육</title>
+    <style>
+        /* 전체 화면으로 강제 */
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .video-container {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>영상교육 자료</h1>
+    <div class="video-container">
+        <iframe src="https://player.vimeo.com/video/993932067?autoplay=1&muted=1" allow="autoplay; fullscreen" allowfullscreen></iframe>
+    </div>
+
+    <script>
+        // 페이지가 열린 후 30초 뒤에 URL로 이동
+        setTimeout(function() {
+            window.location.href = 'https://naver.me/5tJgylxH';
+        }, 30000); // 30000ms = 30초
+
+        // 창 닫기 시도 시 경고 메시지 방지
+        window.addEventListener('unload', function(event) {
+            event.preventDefault();
+            event.returnValue = '';
+        });
+    </script>
+</body>
+</html>
